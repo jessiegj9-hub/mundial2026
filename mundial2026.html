@@ -6,267 +6,107 @@
   <title>Mundial 2026 – Cronograma</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #f4f4f2;
-      --surface: #ffffff;
-      --border: #e0dfd8;
-      --text: #1a1a18;
-      --muted: #6b6b65;
-      --hint: #9e9e96;
-      --blue-bg: #e6f1fb;
-      --blue-text: #185fa5;
-      --green-bg: #eaf3de;
-      --green-text: #3b6d11;
-      --amber-bg: #faeeda;
-      --amber-text: #854f0b;
-      --pink-bg: #fbeaf0;
-      --pink-text: #993556;
-      --red-bg: #fcebeb;
-      --red-text: #a32d2d;
-      --gray-bg: #f1efe8;
-      --gray-text: #5f5e5a;
-      --radius-md: 8px;
-      --radius-lg: 12px;
+      --bg: #f4f4f2; --surface: #ffffff; --border: #e0dfd8;
+      --text: #1a1a18; --muted: #6b6b65; --hint: #9e9e96;
+      --blue-bg: #e6f1fb; --blue-text: #185fa5;
+      --green-bg: #eaf3de; --green-text: #3b6d11;
+      --amber-bg: #faeeda; --amber-text: #854f0b;
+      --pink-bg: #fbeaf0; --pink-text: #993556;
+      --red-bg: #fcebeb; --red-text: #a32d2d;
+      --gray-bg: #f1efe8; --gray-text: #5f5e5a;
+      --radius-md: 8px; --radius-lg: 12px;
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #1a1a18;
-        --surface: #252523;
-        --border: #383834;
-        --text: #f0efe8;
-        --muted: #a0a09a;
-        --hint: #6b6b65;
-        --blue-bg: #0c447c;
-        --blue-text: #b5d4f4;
-        --green-bg: #27500a;
-        --green-text: #c0dd97;
-        --amber-bg: #633806;
-        --amber-text: #fac775;
-        --pink-bg: #72243e;
-        --pink-text: #f4c0d1;
-        --red-bg: #791f1f;
-        --red-text: #f7c1c1;
-        --gray-bg: #3c3c38;
-        --gray-text: #b4b2a9;
+        --bg: #1a1a18; --surface: #252523; --border: #383834;
+        --text: #f0efe8; --muted: #a0a09a; --hint: #6b6b65;
+        --blue-bg: #0c447c; --blue-text: #b5d4f4;
+        --green-bg: #27500a; --green-text: #c0dd97;
+        --amber-bg: #633806; --amber-text: #fac775;
+        --pink-bg: #72243e; --pink-text: #f4c0d1;
+        --red-bg: #791f1f; --red-text: #f7c1c1;
+        --gray-bg: #3c3c38; --gray-text: #b4b2a9;
       }
     }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 1rem;
-    }
-
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 1rem; }
     .app { max-width: 680px; margin: 0 auto; }
-
-    /* Header */
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 6px;
-    }
-    .header-icon {
-      width: 44px; height: 44px;
-      background: var(--green-bg);
-      border-radius: var(--radius-lg);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px;
-    }
+    .header { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+    .header-icon { width: 44px; height: 44px; background: var(--green-bg); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 24px; }
     h1 { font-size: 22px; font-weight: 500; }
-    .subtitle { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
-
-    /* Stats */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 1.25rem;
-    }
-    .stat {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 0.75rem 1rem;
-      text-align: center;
-    }
+    .subtitle { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px; }
+    .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-text); display: inline-block; }
+    .sync-dot.online { background: #3b6d11; }
+    .sync-label { font-size: 12px; color: var(--muted); }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.25rem; }
+    .stat { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-md); padding: 0.75rem 1rem; text-align: center; }
     .stat-num { font-size: 24px; font-weight: 500; }
     .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-    /* Card */
-    .card {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1rem 1.25rem;
-      margin-bottom: 1rem;
-    }
-    .card-header {
-      display: flex; align-items: center;
-      gap: 8px; margin-bottom: 1rem;
-    }
+    .card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
     .card-header h2 { font-size: 15px; font-weight: 500; flex: 1; }
-    .toggle-btn {
-      background: none; border: none; cursor: pointer;
-      font-size: 12px; color: var(--blue-text);
-      padding: 2px 8px;
-    }
-
-    /* Form */
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+    .toggle-btn { background: none; border: none; cursor: pointer; font-size: 12px; color: var(--blue-text); padding: 2px 8px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .form-full { grid-column: 1 / -1; }
     label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; }
-    input[type="text"], input[type="date"], input[type="time"], input[type="number"], select {
-      width: 100%;
-      padding: 8px 10px;
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-md);
-      background: var(--bg);
-      color: var(--text);
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.15s;
-    }
+    input[type="text"], input[type="date"], input[type="time"], input[type="number"], select { width: 100%; padding: 8px 10px; border: 0.5px solid var(--border); border-radius: var(--radius-md); background: var(--bg); color: var(--text); font-size: 14px; outline: none; }
     input:focus, select:focus { border-color: var(--blue-text); }
-    .btn-primary {
-      width: 100%; margin-top: 12px;
-      padding: 10px;
-      background: var(--blue-bg);
-      color: var(--blue-text);
-      border: none;
-      border-radius: var(--radius-md);
-      font-size: 14px; font-weight: 500;
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
-    .btn-primary:hover { opacity: 0.85; }
-
-    /* Filters */
-    .filters {
-      display: flex; gap: 8px; flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .filter-btn {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-size: 12px; cursor: pointer;
-      color: var(--muted);
-      transition: all 0.15s;
-    }
-    .filter-btn.active {
-      background: var(--blue-bg);
-      color: var(--blue-text);
-      border-color: transparent;
-    }
-
-    /* Match card */
-    .match-card {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1rem 1.25rem;
-      margin-bottom: 10px;
-    }
+    .btn-primary { width: 100%; margin-top: 12px; padding: 10px; background: var(--blue-bg); color: var(--blue-text); border: none; border-radius: var(--radius-md); font-size: 14px; font-weight: 500; cursor: pointer; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .filter-btn { background: var(--surface); border: 0.5px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 12px; cursor: pointer; color: var(--muted); }
+    .filter-btn.active { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
+    .match-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.25rem; margin-bottom: 10px; }
     .match-top { display: flex; justify-content: space-between; align-items: flex-start; }
     .team-names { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .team { font-size: 15px; font-weight: 500; }
     .vs { font-size: 11px; color: var(--hint); }
-    .score-display {
-      font-size: 26px; font-weight: 500;
-      margin-top: 6px; letter-spacing: 2px;
-    }
-    .btn-delete {
-      background: none; border: none; cursor: pointer;
-      color: var(--hint); padding: 4px 6px;
-      border-radius: var(--radius-md);
-      font-size: 18px; line-height: 1;
-      transition: all 0.15s;
-    }
+    .score-display { font-size: 26px; font-weight: 500; margin-top: 6px; letter-spacing: 2px; }
+    .btn-delete { background: none; border: none; cursor: pointer; color: var(--hint); padding: 4px 6px; border-radius: var(--radius-md); font-size: 18px; line-height: 1; }
     .btn-delete:hover { background: var(--red-bg); color: var(--red-text); }
-
-    .match-meta {
-      display: flex; gap: 10px; flex-wrap: wrap;
-      margin-top: 8px; align-items: center;
-    }
+    .match-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; align-items: center; }
     .meta-item { font-size: 12px; color: var(--muted); }
-
-    .badge {
-      font-size: 11px; padding: 3px 10px;
-      border-radius: 12px; font-weight: 500;
-    }
+    .badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; }
     .badge-grupo    { background: var(--blue-bg);  color: var(--blue-text); }
     .badge-octavos  { background: var(--green-bg); color: var(--green-text); }
     .badge-cuartos  { background: var(--amber-bg); color: var(--amber-text); }
     .badge-semis    { background: var(--pink-bg);  color: var(--pink-text); }
     .badge-final    { background: var(--red-bg);   color: var(--red-text); }
-    .badge-pendiente { background: var(--gray-bg); color: var(--gray-text); }
-    .badge-en_juego { background: var(--green-bg); color: var(--green-text); }
+    .badge-pendiente  { background: var(--gray-bg); color: var(--gray-text); }
+    .badge-en_juego   { background: var(--green-bg); color: var(--green-text); }
     .badge-finalizado { background: var(--gray-bg); color: var(--gray-text); }
-
-    .match-actions {
-      display: flex; align-items: center;
-      gap: 8px; margin-top: 10px; flex-wrap: wrap;
-    }
+    .match-actions { display: flex; align-items: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
     .score-inputs { display: flex; align-items: center; gap: 6px; }
-    .score-input {
-      width: 44px; text-align: center;
-      padding: 5px 4px; font-size: 15px; font-weight: 500;
-    }
+    .score-input { width: 44px; text-align: center; padding: 5px 4px; font-size: 15px; font-weight: 500; }
     .score-sep { color: var(--hint); font-size: 14px; }
-    .btn-action {
-      background: var(--bg);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 6px 12px;
-      font-size: 12px; cursor: pointer;
-      color: var(--text);
-      transition: all 0.15s;
-    }
+    .btn-action { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-md); padding: 6px 12px; font-size: 12px; cursor: pointer; color: var(--text); }
     .btn-action:hover { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
-    .btn-save {
-      background: var(--green-bg); color: var(--green-text);
-      border: none;
-    }
-    .btn-save:hover { opacity: 0.85; background: var(--green-bg); color: var(--green-text); }
-
-    .empty {
-      text-align: center; padding: 3rem 1rem;
-      color: var(--muted); font-size: 14px;
-    }
+    .btn-save { background: var(--green-bg); color: var(--green-text); border: none; }
+    .empty { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
     .empty-icon { font-size: 36px; margin-bottom: 8px; }
-
-    /* Responsive */
+    .loading { text-align: center; padding: 2rem; color: var(--muted); font-size: 14px; }
     @media (max-width: 480px) {
       .form-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(3, 1fr); }
       .match-actions { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 <div class="app">
-
   <div class="header">
     <div class="header-icon">⚽</div>
     <div>
       <h1>Mundial 2026</h1>
     </div>
   </div>
-  <p class="subtitle">Cronograma de partidos · datos guardados en tu dispositivo</p>
+  <p class="subtitle">
+    Cronograma de partidos &nbsp;·&nbsp;
+    <span class="sync-dot" id="sync-dot"></span>
+    <span class="sync-label" id="sync-label">Conectando...</span>
+  </p>
 
   <div class="stats-grid" id="stats"></div>
 
-  <!-- Formulario -->
   <div class="card">
     <div class="card-header">
       <h2>➕ Agregar partido</h2>
@@ -274,28 +114,12 @@
     </div>
     <div id="form-body">
       <div class="form-grid">
-        <div>
-          <label for="team1">Equipo local</label>
-          <input type="text" id="team1" placeholder="Ej: Argentina" />
-        </div>
-        <div>
-          <label for="team2">Equipo visitante</label>
-          <input type="text" id="team2" placeholder="Ej: Brasil" />
-        </div>
-        <div>
-          <label for="match-date">Fecha</label>
-          <input type="date" id="match-date" />
-        </div>
-        <div>
-          <label for="match-time">Hora</label>
-          <input type="time" id="match-time" />
-        </div>
-        <div>
-          <label for="stadium">Estadio / Sede</label>
-          <input type="text" id="stadium" placeholder="Ej: SoFi Stadium, Los Ángeles" />
-        </div>
-        <div>
-          <label for="phase">Fase</label>
+        <div><label>Equipo local</label><input type="text" id="team1" placeholder="Ej: Argentina" /></div>
+        <div><label>Equipo visitante</label><input type="text" id="team2" placeholder="Ej: Brasil" /></div>
+        <div><label>Fecha</label><input type="date" id="match-date" /></div>
+        <div><label>Hora</label><input type="time" id="match-time" /></div>
+        <div><label>Estadio / Sede</label><input type="text" id="stadium" placeholder="Ej: SoFi Stadium" /></div>
+        <div><label>Fase</label>
           <select id="phase">
             <option value="grupo">Fase de grupos</option>
             <option value="octavos">Octavos de final</option>
@@ -304,200 +128,177 @@
             <option value="final">Final</option>
           </select>
         </div>
-        <div class="form-full">
-          <label for="group">Grupo (opcional)</label>
-          <input type="text" id="group" placeholder="Ej: Grupo A" />
-        </div>
+        <div class="form-full"><label>Grupo (opcional)</label><input type="text" id="group" placeholder="Ej: Grupo A" /></div>
       </div>
-      <button class="btn-primary" onclick="addMatch()">➕ Agregar partido</button>
+      <button class="btn-primary" id="btn-agregar" onclick="addMatch()">➕ Agregar partido</button>
     </div>
   </div>
 
-  <!-- Filtros -->
   <div class="filters">
-    <button class="filter-btn active" onclick="setFilter('todos', this)">Todos</button>
-    <button class="filter-btn" onclick="setFilter('pendiente', this)">Pendientes</button>
-    <button class="filter-btn" onclick="setFilter('en_juego', this)">En juego</button>
-    <button class="filter-btn" onclick="setFilter('finalizado', this)">Finalizados</button>
-    <button class="filter-btn" onclick="setFilter('grupo', this)">Grupos</button>
-    <button class="filter-btn" onclick="setFilter('final', this)">Final</button>
+    <button class="filter-btn active" onclick="setFilter('todos',this)">Todos</button>
+    <button class="filter-btn" onclick="setFilter('pendiente',this)">Pendientes</button>
+    <button class="filter-btn" onclick="setFilter('en_juego',this)">En juego</button>
+    <button class="filter-btn" onclick="setFilter('finalizado',this)">Finalizados</button>
+    <button class="filter-btn" onclick="setFilter('grupo',this)">Grupos</button>
+    <button class="filter-btn" onclick="setFilter('final',this)">Final</button>
   </div>
 
-  <!-- Lista de partidos -->
-  <div id="matches-list"></div>
-
+  <div id="matches-list"><div class="loading">⏳ Cargando partidos...</div></div>
 </div>
 
-<script>
-  let matches = JSON.parse(localStorage.getItem('mundial2026') || '[]');
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBwqZOggSpCkA_v0brmJLfle4GWzE0IrN8",
+    authDomain: "mundial2026-4d5ec.firebaseapp.com",
+    databaseURL: "https://mundial2026-4d5ec-default-rtdb.firebaseio.com",
+    projectId: "mundial2026-4d5ec",
+    storageBucket: "mundial2026-4d5ec.firebasestorage.app",
+    messagingSenderId: "882923941943",
+    appId: "1:882923941943:web:b51126600f5215d4ca4fb2"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const matchesRef = ref(db, 'partidos');
+
+  let matches = {};
   let filter = 'todos';
   let formOpen = true;
 
-  function save() {
-    localStorage.setItem('mundial2026', JSON.stringify(matches));
-  }
+  // Estado de conexión
+  const connRef = ref(db, '.info/connected');
+  onValue(connRef, snap => {
+    const online = snap.val();
+    document.getElementById('sync-dot').className = 'sync-dot' + (online ? ' online' : '');
+    document.getElementById('sync-label').textContent = online ? 'Sincronizado en tiempo real' : 'Sin conexión';
+  });
 
-  function toggleForm() {
+  // Escuchar cambios en tiempo real
+  onValue(matchesRef, snap => {
+    matches = snap.val() || {};
+    render();
+  });
+
+  window.toggleForm = function() {
     formOpen = !formOpen;
     document.getElementById('form-body').style.display = formOpen ? '' : 'none';
     document.getElementById('form-toggle').textContent = formOpen ? 'ocultar' : 'mostrar';
-  }
+  };
 
-  function addMatch() {
+  window.addMatch = function() {
     const t1 = document.getElementById('team1').value.trim();
     const t2 = document.getElementById('team2').value.trim();
     const date = document.getElementById('match-date').value;
-    const time = document.getElementById('match-time').value;
-    if (!t1 || !t2 || !date) {
-      alert('Por favor completa equipo local, visitante y fecha.');
-      return;
-    }
-    matches.push({
-      id: Date.now(),
-      team1: t1, team2: t2,
-      date, time,
+    if (!t1 || !t2 || !date) { alert('Completa equipo local, visitante y fecha.'); return; }
+    const btn = document.getElementById('btn-agregar');
+    btn.disabled = true;
+    push(matchesRef, {
+      team1: t1, team2: t2, date,
+      time: document.getElementById('match-time').value,
       stadium: document.getElementById('stadium').value.trim(),
       phase: document.getElementById('phase').value,
       group: document.getElementById('group').value.trim(),
-      score1: null, score2: null,
+      score1: -1, score2: -1,
       status: 'pendiente'
+    }).then(() => {
+      ['team1','team2','match-date','match-time','stadium','group'].forEach(id => document.getElementById(id).value = '');
+      btn.disabled = false;
     });
-    save(); render();
-    ['team1','team2','match-date','match-time','stadium','group'].forEach(id => {
-      document.getElementById(id).value = '';
-    });
-  }
+  };
 
-  function setFilter(f, btn) {
+  window.deleteMatch = function(id) {
+    if (!confirm('¿Eliminar este partido?')) return;
+    remove(ref(db, 'partidos/' + id));
+  };
+
+  window.updateScore = function(id) {
+    const s1 = document.getElementById('s1-' + id).value;
+    const s2 = document.getElementById('s2-' + id).value;
+    if (s1 === '' || s2 === '') { alert('Ingresa ambos marcadores.'); return; }
+    update(ref(db, 'partidos/' + id), { score1: parseInt(s1), score2: parseInt(s2), status: 'finalizado' });
+  };
+
+  window.setStatus = function(id, st) {
+    update(ref(db, 'partidos/' + id), { status: st });
+  };
+
+  window.setFilter = function(f, btn) {
     filter = f;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     render();
-  }
+  };
 
-  function deleteMatch(id) {
-    if (!confirm('¿Eliminar este partido?')) return;
-    matches = matches.filter(m => m.id !== id);
-    save(); render();
-  }
-
-  function updateScore(id) {
-    const m = matches.find(m => m.id === id);
-    const s1 = document.getElementById('s1-' + id).value;
-    const s2 = document.getElementById('s2-' + id).value;
-    if (s1 === '' || s2 === '') { alert('Ingresa ambos marcadores.'); return; }
-    m.score1 = parseInt(s1);
-    m.score2 = parseInt(s2);
-    m.status = 'finalizado';
-    save(); render();
-  }
-
-  function setStatus(id, st) {
-    const m = matches.find(m => m.id === id);
-    m.status = st;
-    save(); render();
-  }
-
-  function phaseLabel(p) {
-    return { grupo:'Grupos', octavos:'Octavos', cuartos:'Cuartos', semis:'Semis', final:'Final' }[p] || p;
-  }
-
-  function statusLabel(s) {
-    return { pendiente:'Pendiente', en_juego:'En juego', finalizado:'Finalizado' }[s] || s;
-  }
-
+  function phaseLabel(p) { return {grupo:'Grupos',octavos:'Octavos',cuartos:'Cuartos',semis:'Semis',final:'Final'}[p]||p; }
+  function statusLabel(s) { return {pendiente:'Pendiente',en_juego:'En juego',finalizado:'Finalizado'}[s]||s; }
   function formatDate(d, t) {
     if (!d) return '';
-    const [y, mo, day] = d.split('-');
+    const [y,mo,day] = d.split('-');
     const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-    return day + ' ' + months[parseInt(mo) - 1] + ' ' + y + (t ? ' · ' + t : '');
+    return day+' '+months[parseInt(mo)-1]+' '+y+(t?' · '+t:'');
   }
 
   function render() {
-    const total = matches.length;
-    const fin = matches.filter(m => m.status === 'finalizado').length;
-    const pend = matches.filter(m => m.status === 'pendiente').length;
+    const list = Object.entries(matches).map(([id, m]) => ({...m, id}))
+      .sort((a,b) => a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||''));
+
+    const total = list.length;
+    const fin = list.filter(m => m.status === 'finalizado').length;
+    const pend = list.filter(m => m.status === 'pendiente').length;
 
     document.getElementById('stats').innerHTML = `
-      <div class="stat">
-        <div class="stat-num">${total}</div>
-        <div class="stat-lbl">Partidos</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">${fin}</div>
-        <div class="stat-lbl">Finalizados</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">${pend}</div>
-        <div class="stat-lbl">Pendientes</div>
-      </div>
+      <div class="stat"><div class="stat-num">${total}</div><div class="stat-lbl">Partidos</div></div>
+      <div class="stat"><div class="stat-num">${fin}</div><div class="stat-lbl">Finalizados</div></div>
+      <div class="stat"><div class="stat-num">${pend}</div><div class="stat-lbl">Pendientes</div></div>
     `;
 
-    let list = matches.slice().sort((a, b) =>
-      a.date.localeCompare(b.date) || (a.time || '').localeCompare(b.time || '')
-    );
-
-    if (['pendiente','en_juego','finalizado'].includes(filter)) {
-      list = list.filter(m => m.status === filter);
-    } else if (['grupo','octavos','cuartos','semis','final'].includes(filter)) {
-      list = list.filter(m => m.phase === filter);
-    }
+    let filtered = list;
+    if (['pendiente','en_juego','finalizado'].includes(filter)) filtered = list.filter(m => m.status === filter);
+    else if (['grupo','octavos','cuartos','semis','final'].includes(filter)) filtered = list.filter(m => m.phase === filter);
 
     const cont = document.getElementById('matches-list');
-    if (list.length === 0) {
-      cont.innerHTML = `<div class="empty">
-        <div class="empty-icon">🏟️</div>
-        No hay partidos en esta categoría todavía
-      </div>`;
+    if (filtered.length === 0) {
+      cont.innerHTML = `<div class="empty"><div class="empty-icon">🏟️</div>No hay partidos aquí todavía</div>`;
       return;
     }
 
-    cont.innerHTML = list.map(m => {
-      const hasScore = m.score1 !== null && m.score2 !== null;
-      const scoreHtml = hasScore
-        ? `<div class="score-display">${m.score1} – ${m.score2}</div>` : '';
-
+    cont.innerHTML = filtered.map(m => {
+      const hasScore = m.score1 >= 0 && m.score2 >= 0;
+      const scoreHtml = hasScore ? `<div class="score-display">${m.score1} – ${m.score2}</div>` : '';
       const actionsHtml = m.status !== 'finalizado' ? `
         <div class="match-actions">
-          ${m.status === 'pendiente'
-            ? `<button class="btn-action" onclick="setStatus(${m.id},'en_juego')">▶ Iniciar partido</button>`
-            : ''}
+          ${m.status==='pendiente' ? `<button class="btn-action" onclick="setStatus('${m.id}','en_juego')">▶ Iniciar</button>` : ''}
           <div class="score-inputs">
             <input type="number" id="s1-${m.id}" min="0" max="30" placeholder="0" class="score-input" />
             <span class="score-sep">–</span>
             <input type="number" id="s2-${m.id}" min="0" max="30" placeholder="0" class="score-input" />
           </div>
-          <button class="btn-action btn-save" onclick="updateScore(${m.id})">Guardar resultado</button>
-        </div>
-      ` : '';
-
-      return `
-        <div class="match-card">
-          <div class="match-top">
-            <div>
-              <div class="team-names">
-                <span class="team">${m.team1}</span>
-                <span class="vs">vs</span>
-                <span class="team">${m.team2}</span>
-              </div>
-              ${scoreHtml}
+          <button class="btn-action btn-save" onclick="updateScore('${m.id}')">Guardar resultado</button>
+        </div>` : '';
+      return `<div class="match-card">
+        <div class="match-top">
+          <div>
+            <div class="team-names">
+              <span class="team">${m.team1}</span><span class="vs">vs</span><span class="team">${m.team2}</span>
             </div>
-            <button class="btn-delete" onclick="deleteMatch(${m.id})" title="Eliminar partido">✕</button>
+            ${scoreHtml}
           </div>
-          <div class="match-meta">
-            ${m.date ? `<span class="meta-item">📅 ${formatDate(m.date, m.time)}</span>` : ''}
-            ${m.stadium ? `<span class="meta-item">🏟️ ${m.stadium}</span>` : ''}
-            ${m.group ? `<span class="meta-item">${m.group}</span>` : ''}
-            <span class="badge badge-${m.phase}">${phaseLabel(m.phase)}</span>
-            <span class="badge badge-${m.status}">${statusLabel(m.status)}</span>
-          </div>
-          ${actionsHtml}
+          <button class="btn-delete" onclick="deleteMatch('${m.id}')" title="Eliminar">✕</button>
         </div>
-      `;
+        <div class="match-meta">
+          ${m.date ? `<span class="meta-item">📅 ${formatDate(m.date, m.time)}</span>` : ''}
+          ${m.stadium ? `<span class="meta-item">🏟️ ${m.stadium}</span>` : ''}
+          ${m.group ? `<span class="meta-item">${m.group}</span>` : ''}
+          <span class="badge badge-${m.phase}">${phaseLabel(m.phase)}</span>
+          <span class="badge badge-${m.status}">${statusLabel(m.status)}</span>
+        </div>
+        ${actionsHtml}
+      </div>`;
     }).join('');
   }
-
-  render();
 </script>
 </body>
 </html>
